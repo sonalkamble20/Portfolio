@@ -51,7 +51,7 @@ sections.forEach(s => sectionObs.observe(s));
 /* ── Scroll reveal ── */
 const revealTargets = document.querySelectorAll(
     '.project-card, .skill-group, .contact-info-col, .contact-form-col, ' +
-    '.about-stats, .section-title, .section-sub, .reach-item, .exp-item'
+    '.about-stats, .section-title, .section-sub, .reach-item, .exp-item, .skill-dist-container'
 );
 
 revealTargets.forEach(el => {
