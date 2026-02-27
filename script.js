@@ -92,7 +92,7 @@ const statsObs = new IntersectionObserver(entries => {
     const statLc = document.getElementById('stat-lc');
     if (statExp) animateCount(statExp, 3, '+');
     if (statProjects) animateCount(statProjects, 6, '+');
-    if (statLc) animateCount(statLc, 52, '+');
+    if (statLc) animateCount(statLc, 321, '+');
     statsObs.disconnect();
 }, { threshold: 0.6 });
 
@@ -146,7 +146,7 @@ if (form) {
                 msgError.style.display = 'flex';
             }
         } catch {
-            msgError.textContent = '✕ Could not connect. Please email sonalkamble209@gmail.com directly.';
+            msgError.textContent = '✕ Could not connect. Please email sonal@sonalkamble.dev directly.';
             msgError.style.display = 'flex';
         } finally {
             submitBtn.disabled = false;

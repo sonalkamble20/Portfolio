@@ -12,7 +12,7 @@
  */
 
 /* ─── CONFIGURATION ─── */
-define('TO_EMAIL', 'sonalkamble209@gmail.com'); // ← your inbox
+define('TO_EMAIL', 'sonal@sonalkamble.dev'); // ← your inbox
 define('TO_NAME', 'Sonal Kamble');
 define('FROM_EMAIL', 'noreply@yourdomain.com'); // ← sender shown in email client
 define('SITE_URL', 'index.html'); // ← redirect target after submit

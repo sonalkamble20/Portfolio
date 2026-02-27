@@ -823,6 +823,16 @@ section {
     color: var(--accent);
 }
 
+.project-title-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+.project-title-link:hover .project-title {
+    color: var(--accent);
+}
+
 .project-title {
     font-size: 1.1rem;
     font-weight: 700;
