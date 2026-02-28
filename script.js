@@ -130,25 +130,35 @@ if (form) {
 
         try {
             const data = new FormData(form);
-            const res = await fetch('contact.php', {
-                method: 'POST',
-                headers: { 'X-Requested-With': 'XMLHttpRequest' },
-                body: data,
-            });
+            const name = data.get('name') || '';
+            const company = data.get('company') ? `\nCompany: ${data.get('company')}` : '';
+            const email = data.get('email') || '';
+            const subject = data.get('subject') || 'other';
+            const message = data.get('message') || '';
 
-            const json = await res.json();
+            const subjectMap = {
+                'job': 'Job / Internship Opportunity',
+                'collaboration': 'Collaboration or Project',
+                'question': 'General Question',
+                'other': 'Other'
+            };
+            const subjectLabel = subjectMap[subject] || 'Portfolio Contact';
 
-            if (json.success) {
+            const mailtoSubject = encodeURIComponent(`[Portfolio] ${subjectLabel} - ${name}`);
+            const mailtoBody = encodeURIComponent(`Name: ${name}${company}\nEmail: ${email}\n\nMessage:\n${message}`);
+
+            window.location.href = `mailto:sonal@sonalkamble.dev?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+            setTimeout(() => {
                 msgSuccess.style.display = 'flex';
+                msgSuccess.textContent = '✓ Email client opened! Looking forward to your message.';
                 form.reset();
-            } else {
-                msgError.textContent = '✕ ' + (json.message || 'Something went wrong.');
-                msgError.style.display = 'flex';
-            }
-        } catch {
-            msgError.textContent = '✕ Could not connect. Please email sonal@sonalkamble.dev directly.';
+                submitBtn.disabled = false;
+                btnText.textContent = 'Send Message →';
+            }, 1000);
+        } catch (error) {
+            msgError.textContent = '✕ Could not prepare email. Please email sonal@sonalkamble.dev directly.';
             msgError.style.display = 'flex';
-        } finally {
             submitBtn.disabled = false;
             btnText.textContent = 'Send Message →';
         }
