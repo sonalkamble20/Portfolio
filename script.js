@@ -144,21 +144,31 @@ if (form) {
             };
             const subjectLabel = subjectMap[subject] || 'Portfolio Contact';
 
-            const mailtoSubject = encodeURIComponent(`[Portfolio] ${subjectLabel} - ${name}`);
-            const mailtoBody = encodeURIComponent(`Name: ${name}${company}\nEmail: ${email}\n\nMessage:\n${message}`);
+            const response = await fetch("https://formsubmit.co/ajax/sonal@sonalkamble.dev", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    _subject: `[Portfolio] ${subjectLabel} - ${name}`,
+                    message: `Name: ${name}${company}\nEmail: ${email}\n\nMessage:\n${message}`
+                })
+            });
 
-            window.location.href = `mailto:sonal@sonalkamble.dev?subject=${mailtoSubject}&body=${mailtoBody}`;
-
-            setTimeout(() => {
+            if (response.ok) {
                 msgSuccess.style.display = 'flex';
-                msgSuccess.textContent = '✓ Email client opened! Looking forward to your message.';
+                msgSuccess.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
                 form.reset();
-                submitBtn.disabled = false;
-                btnText.textContent = 'Send Message →';
-            }, 1000);
+            } else {
+                throw new Error('Failed to send');
+            }
         } catch (error) {
-            msgError.textContent = '✕ Could not prepare email. Please email sonal@sonalkamble.dev directly.';
+            msgError.textContent = '✕ Could not send message. Please email sonal@sonalkamble.dev directly.';
             msgError.style.display = 'flex';
+        } finally {
             submitBtn.disabled = false;
             btnText.textContent = 'Send Message →';
         }
