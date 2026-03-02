@@ -131,7 +131,7 @@ if (form) {
         try {
             const data = new FormData(form);
             const name = data.get('name') || '';
-            const company = data.get('company') ? `\nCompany: ${data.get('company')}` : '';
+            const company = data.get('company') ? ` | Company: ${data.get('company')}` : '';
             const email = data.get('email') || '';
             const subject = data.get('subject') || 'other';
             const message = data.get('message') || '';
@@ -144,26 +144,30 @@ if (form) {
             };
             const subjectLabel = subjectMap[subject] || 'Portfolio Contact';
 
-            const response = await fetch("https://formsubmit.co/ajax/sonal@sonalkamble.dev", {
+            const response = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
+                    access_key: "9ed6c165-1275-4aec-93b7-0fd9a12e0ac7",
                     name: name,
                     email: email,
-                    _subject: `[Portfolio] ${subjectLabel} - ${name}`,
-                    message: `Name: ${name}${company}\nEmail: ${email}\n\nMessage:\n${message}`
+                    subject: `[Portfolio] ${subjectLabel} — ${name}${company}`,
+                    message: `Name: ${name}${company}\nEmail: ${email}\n\nMessage:\n${message}`,
+                    from_name: "Portfolio Contact Form"
                 })
             });
 
-            if (response.ok) {
+            const result = await response.json();
+
+            if (result.success) {
                 msgSuccess.style.display = 'flex';
                 msgSuccess.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
                 form.reset();
             } else {
-                throw new Error('Failed to send');
+                throw new Error(result.message || 'Failed to send');
             }
         } catch (error) {
             msgError.textContent = '✕ Could not send message. Please email sonal@sonalkamble.dev directly.';
