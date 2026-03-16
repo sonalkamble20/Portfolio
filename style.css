@@ -1394,12 +1394,12 @@ a.reach-item:hover {
     height: 100%;
     border-radius: 50%;
     /* Pie Chart Segments mapped to Portfolio Tokens */
-    background: conic-gradient(var(--accent) 0deg 162deg,
-            /* 45% Java */
-            var(--accent-2) 162deg 270deg,
-            /* 30% JS */
-            var(--success) 270deg 324deg,
-            /* 15% DB */
+    background: conic-gradient(var(--accent) 0deg 108deg,
+            /* 30% Java */
+            var(--accent-2) 108deg 252deg,
+            /* 40% JS */
+            var(--success) 252deg 324deg,
+            /* 20% DB */
             var(--accent-mid) 324deg 360deg
             /* 10% HTML/CSS */
         );
