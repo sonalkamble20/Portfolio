@@ -719,6 +719,16 @@ section {
     color: var(--text-1);
 }
 
+.info-row-value a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition);
+}
+
+.info-row-value a:hover {
+    color: var(--accent);
+}
+
 
 /* ─────────────────────────────────────
    PROJECTS
