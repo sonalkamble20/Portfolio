@@ -811,6 +811,25 @@ section {
     color: var(--accent);
 }
 
+/* Stretched Link to make card clickable */
+.stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    content: "";
+}
+
+/* Ensure links/buttons inside card are reachable */
+.project-links,
+.tech-stack,
+.featured-badge {
+    position: relative;
+    z-index: 20;
+}
+
 .project-title-link {
     text-decoration: none;
     color: inherit;
