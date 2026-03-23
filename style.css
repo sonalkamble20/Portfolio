@@ -1431,14 +1431,14 @@ a.reach-item:hover {
     height: 100%;
     border-radius: 50%;
     /* Pie Chart Segments mapped to Portfolio Tokens */
-    background: conic-gradient(var(--accent) 0deg 108deg,
-            /* 30% Java */
-            var(--accent-2) 108deg 252deg,
-            /* 40% JS */
-            var(--success) 252deg 324deg,
+    background: conic-gradient(var(--accent) 0deg 162deg,
+            /* 45% Java/Arch */
+            var(--accent-2) 162deg 270deg,
+            /* 30% JS */
+            var(--success) 270deg 342deg,
             /* 20% DB */
-            var(--accent-mid) 324deg 360deg
-            /* 10% HTML/CSS */
+            var(--accent-mid) 342deg 360deg
+            /* 5% Automation */
         );
     box-shadow: var(--shadow-md);
 }
