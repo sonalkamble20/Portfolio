@@ -213,6 +213,10 @@ section {
     letter-spacing: -0.02em;
 }
 
+.nav-logo .s { color: var(--text-1); }
+.nav-logo .k { color: var(--accent); }
+.nav-logo .dot { color: var(--accent-2); }
+
 .nav-links {
     display: flex;
     gap: 2.25rem;
